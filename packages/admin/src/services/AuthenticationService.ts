@@ -8,7 +8,12 @@ const BASE_URL = '/api/v1';
 const login = (data: LoginForm): Promise<AxiosResponse<UserResponse>> => {
   return BaseService.post(`${BASE_URL}/auth/signin`, data);
 };
-
+const getData = (): Promise<AxiosResponse> => {
+  return BaseService.get(
+    'https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap',
+  );
+};
 export default {
   login,
+  getData,
 };

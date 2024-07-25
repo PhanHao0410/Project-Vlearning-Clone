@@ -1,23 +1,29 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+// import {
+//   configureStore,
+//   getDefaultMiddleware,
+//   applyMiddleware,
+// } from '@reduxjs/toolkit';
+import { createStore, applyMiddleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'connected-react-router';
+import { thunk } from 'redux-thunk';
 import saga from './saga';
 import reducer from './reducer';
 import history from '../utils/history';
 
 const sagaMiddleware = createSagaMiddleware();
-const middleware = [
-  ...getDefaultMiddleware({ thunk: false }),
-  sagaMiddleware,
-  routerMiddleware(history),
-];
+// const middleware = [
+//   applyMiddleware(thunk)
+//   sagaMiddleware,
+//   routerMiddleware(history),
+// ];
 
-const store = configureStore({
-  middleware,
-  reducer,
-});
+// const middleware = [applyMiddleware(thunk), routerMiddleware(history)];
 
-sagaMiddleware.run(saga);
+const store = createStore(reducer, applyMiddleware(thunk));
+
+// sagaMiddleware.run(saga);
 
 export type RootState = ReturnType<typeof store.getState>;
 

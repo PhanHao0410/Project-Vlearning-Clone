@@ -4,6 +4,7 @@ import path from 'admin/src/constants/clientPath';
 import LoginPage from './containers/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 import DefaultSidebar from './components/DefaultSidebar';
+import HomeUI from './V-Learning/UI-Home';
 import history from './utils/history';
 
 function App() {
@@ -17,11 +18,12 @@ function App() {
         {/**
          * PUBLIC PATHS
          *  */}
-        <Route exact path={path.LOGIN} component={LoginPage} />
+        <Route exact path={path.ROOT} component={HomeUI} />
+        {/* <Route exact path={path.LOGIN} component={LoginPage} /> */}
         {/**
          * PROTECTED PATHS
          */}
-        <ProtectedRoute path={path.ROOT} component={DefaultSidebar} />
+        {/* <ProtectedRoute path={path.ROOT} component={DefaultSidebar} /> */}
       </Switch>
     </HashRouter>
   );
